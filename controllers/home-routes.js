@@ -43,12 +43,12 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
-// check for log in and authorize and redirect or move along
+// check for log in and authorize and redirect
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// route for reviewing all users - not accessible through user interface
+// route for reviewing all users 
 router.get("/list", async (req, res) => {
   const userData = await User.findAll().catch((err) => {
     res.json(err);
@@ -58,14 +58,8 @@ router.get("/list", async (req, res) => {
   res.json(users);
 });
 
-// route for reviewing all games - not accessible through user interface
-router.get("/box", async (req, res) => {
-  const gameData = await Game.findAll().catch((err) => {
-    res.json(err);
-  });
-  const games = gameData.map((game) => game.get({ plain: true }));
-
-  res.json(games);
+router.get('/signup', (req, res) => {
+  res.render('signup');
 });
 
 module.exports = router;
