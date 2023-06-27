@@ -40,28 +40,25 @@ router.get("/user-home", authorize, async (req, res) => {
 //   }
 // });
 
-router.get('/new', withAuth, (req, res) => {
-  res.render('new-post', {
+router.get('/write-post', authorize, (req, res) => {
+  res.render('write-post', {
     layout: 'dashboard',
   });
 });
 
-router.get('/edit/:id', withAuth, async (req, res) => {
+router.get("/edit-post/:id", authorize, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id);
+    const postData = await Blogpost.findByPk(req.params.id);
 
-    if (postData) {
-      const post = postData.get({ plain: true });
 
-      res.render('edit-post', {
-        layout: 'dashboard',
-        post,
+      const blogPost = postData.get({ plain: true });
+
+      res.render("edit-post", {
+        layout: "dashboard",
+        blogPost,
       });
-    } else {
-      res.status(404).end();
-    }
   } catch (err) {
-    res.redirect('login');
+    res.redirect("login");
   }
 });
 
