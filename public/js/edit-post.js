@@ -1,18 +1,18 @@
 const postId = document.querySelector('input[name="post-id"]').value;
 
 //change moreDifferentPost to another name
-const moreDifferentPost = async function(event) {
+const todaysPost = async function(event) {
   event.preventDefault();
 
   //change moreDifferentTitle and moreDifferentBody to another name
-  const moreDifferentTitle = document.querySelector(`#post-title`).value;
-  const moreDifferentBody = document.querySelector(`#post-body`).value;
+  const todaysTitle = document.querySelector(`#post-title`).value;
+  const todaysBody = document.querySelector(`#post-body`).value;
 
   await fetch(`/api/post/${postId}`, {
     method: 'PUT',
     body: JSON.stringify({
-      moreDifferentTitle,
-      moreDifferentBody
+      todaysTitle,
+      todaysBody
     }),
     headers: {
       'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ const throwItIntoTheSun = async function() {
 //reflect name changes
 document
   .querySelector('#edit-post-form')
-  .addEventListener('submit', moreDifferentPost);
+  .addEventListener('submit', todaysPost);
 document
   .querySelector('#delete-btn')
-  .addEventListener('click', throwItIntoTheSun);
+  .addEventListener('click', sashayAway);
