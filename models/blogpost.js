@@ -1,20 +1,3 @@
-// const { Sequelize, Model, DataTypes } = require('sequelize');
-// const sequelize = require('../config/config');
-
-// class Blogpost extends Model {}
-
-// Blogpost.init(
-//   {
-//     title: DataTypes.STRING,
-//     body: DataTypes.STRING
-//   },
-//   {
-//     sequelize
-//   }
-// );
-
-// module.exports = Post;
-
 // required dependencies
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
