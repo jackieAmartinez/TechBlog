@@ -1,8 +1,8 @@
 
 // the queen
-  // const { User } = require('../models');
+  const { User } = require('../models');
 
-  // const userData = 
+  const userData = 
   [
     {
         "userName": "Sal",
@@ -36,8 +36,8 @@
       }
   ]
   
-//   const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
+  const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
   
-//   module.exports = seedUsers;
+  module.exports = seedUsers;
   
   
