@@ -1,3 +1,4 @@
+//Does this need to be clog.js
 const authorize = (req, res, next) => {
   if (!req.session.logged_in) {
     res.status(400);
