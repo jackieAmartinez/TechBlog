@@ -1,37 +1,37 @@
-const router = require('express').Router();
-const { BlogPost } = require('../../models/');
-const authorize = require('../../utils/auth');
+const router = require("express").Router();
+const { Post } = require("../../models/");
+const authorize = require("../../utils/authorize");
 
-router.post('/', authorize, async (req, res) => {
-  const body = req.body;
 
+router.post("/", authorize, async (req, res) => {
+  const body = req.body; 
   try {
-    const post = await blogPost.create({ ...body, userId: req.session.userId });
-    res.json(newPost);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+     const post = await Post.create({
+       ...req.body,
+       userID: req.session.user_id
+     });
+     res.status(200).json(post);
+   } catch (err) {
+     res.status(400).json(err);
+   }
 });
 
 router.get('/:id', async (req, res) => {
 
   try {
-     const postData = await Blogpost.findOne({
+     const postData = await post.findOne({
        where: {
          id: req.params.id,
        },
      });
-
      res.json(postData);
-
-
 } catch (err) {
   res.status(500).json(err);
 }
 });
 
-router.put('/:id', authorize, (req, res) => {
-  try { const updated = Blogpost.update({
+router.put("/:id", authorize, (req, res) => {
+  try { const updated = Post.update({
         ...req.body,
         userID: req.session.user_id
      }, 
@@ -41,7 +41,7 @@ router.put('/:id', authorize, (req, res) => {
   });
   if (!updated) {
      res.status(404).json({
-       message: `Let's try that again`,
+       message: `You spelled stuff horrible huh?`,
      });
      return;
    }
@@ -53,23 +53,21 @@ router.put('/:id', authorize, (req, res) => {
 
 router.delete("/:id", authorize, async (req, res) => {
   try {
-    const deleteher = await Blogpost.cancel({
+    const yeetyeet = await Post.destroy({
       where: {
         id: req.params.id,
       },
     });
-    if (!deleteher) {
+    if (!yeetyeet) {
       res.status(404).json({
-        message: `Let's try that again`,
+        message: `How dare you delete these things!`,
       });
       return;
     }
-    res.status(200).json(deleteher);
+    res.status(200).json(yeetyeet);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 module.exports = router;
-
-
