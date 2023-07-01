@@ -9,15 +9,15 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/LindseyIsaac/MVCblog14.git"
+      "url": "git+https://github.com/jackieamartinez/tech-blog.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/LindseyIsaac/MVCblog14/issues"
+      "url": "https://github.com/jackieamartinez/tech-blog/issues"
     },
-    "homepage": "https://github.com/LindseyIsaac/MVCblog14#readme",
+    "homepage": "https://github.com/jackieamartinez/tech-blog#readme",
     "dependencies": {
       "bcrypt": "^5.1.0",
       "connect-session-sequelize": "^7.1.7",
