@@ -1,8 +1,6 @@
-// required dependencies
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-// game model to organize the shelf before table gets flipped
 class Comment extends Model {}
 
 Comment.init(
@@ -27,7 +25,7 @@ Comment.init(
     postID: {
       type: DataTypes.INTEGER,
       references: {
-        model: "blogpost",
+        model: "Post",
         key: "id",
       },
     },
