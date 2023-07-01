@@ -19,5 +19,5 @@ const createUser = async (event) => {
       }
     }
   };
- 
-  document.querySelector("#signup-form").addEventListener("submit", createUser);
+
+document.querySelector("#signup-form").addEventListener("submit", createUser);

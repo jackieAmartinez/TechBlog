@@ -1,14 +1,14 @@
 // function to log out user
 const logout = async () => {
-    const response = await fetch("/api/users/logout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
+  const response = await fetch("/api/users/logout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
     // if good send to main landing page to log in again or alerts a status error
     if (response.ok) {
       document.location.replace("/");
     } else {
-      alert("Let's try again");
+      alert(response.statusText);
     }
   };
   
