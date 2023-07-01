@@ -1,8 +1,8 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const hbs = require('express-handlebars');
-const routes = require("./controllers");
+const handlebars = require('express-handlebars');
+// const routes = require("./controllers");
 const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
 const SessionStorage = require('connect-session-sequelize')(session.Store);
@@ -10,47 +10,35 @@ const SessionStorage = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = 3001;
 
-// const path = require('path');
-// const express = require('express');
-// const session = require('express-session');
-// const hbs = require('express-handlebars');
-// const routes = require("./controllers");
-// const helpers = require('./utils/helpers');
-// const sequelize = require('./config/connection');
-// const SessionStorage = require('connect-session-sequelize')(session.Store);
+const userSession = {
+  secret: 'imjustababy',
+  cookie: {
+    maxAge: 3600000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SessionStorage({
+    db: sequelize
+  })
+};
+// could be const hbs
+const view = handlebars.create({ helpers });
 
-// const app = express();
-// const PORT = 3001;
+app.use(session(userSession));
 
-// const userSession = {
-//   secret: 'imjustababy',
-//   cookie: {
-//     maxAge: 3600000,
-//     httpOnly: true,
-//     secure: false,
-//     sameSite: 'strict',
-//   },
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SessionStorage({
-//     db: sequelize
-//   })
-// };
+app.engine('handlebars', view.engine);
+app.set('view engine', 'handlebars');
 
-// const view = hbs.create({ helpers });
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(session(userSession));
+app.use(require('./controllers/'));
 
-// app.engine('handlebars', view.engine);
-// app.set('view engine', 'handlebars');
-
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use(require('./controllers/'));
-
-// app.listen(PORT, () => {
-//   console.log(`App listening on port ${PORT}!`);
-//   sequelize.sync({ force: false });
-// });
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
+  sequelize.sync({ force: false });
+});
