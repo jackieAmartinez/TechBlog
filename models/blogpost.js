@@ -17,11 +17,11 @@ Blogpost.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    body: {
+    content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userID: {
+    user_ID: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
