@@ -36,7 +36,7 @@
 // the queen
 const sequelize = require('../config/connection');
 const seedUsers = require('./userData');
-const seedPosts = require('./blogPostData');
+const seedblogPosts = require('./blogPostData');
 const seedComments = require('./commentData');
 
 const seedAll = async () => {
@@ -44,8 +44,8 @@ const seedAll = async () => {
 
     await seedUsers();
         console.log('\n**********USERS SEEDED**********\n');
-    await seedPosts();
-        console.log('\n**********POSTS SEEDED**********\n');
+    await seedblogPosts();
+        console.log('\n**********BLOGPOSTS SEEDED**********\n');
     await seedComments();
         console.log('\n********COMMENTS SEEDED*********\n');
     process.exit(0);

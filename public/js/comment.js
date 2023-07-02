@@ -1,14 +1,15 @@
 const makeComment = async function(event) {
   event.preventDefault();
 
-  const postID = document.querySelector("#post-id").value;
+  const blogPost_ID = document.querySelector("#blogpost-id").value;
   const commentText = document.querySelector("#comment-body").value;
 
   await fetch(`/api/comments`, {
     method: 'POST',
     body: JSON.stringify({
-      postID,
-      body: commentText,
+      //change all post to blogpost
+      blogPost_ID,
+      content: commentText,
     }),
     headers: { 'Content-Type': 'application/json' },
   });
