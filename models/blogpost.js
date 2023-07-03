@@ -3,9 +3,9 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 // game model to organize the shelf before table gets flipped
-class Blogpost extends Model {}
+class blogPost extends Model {}
 
-Blogpost.init(
+blogPost.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -33,8 +33,8 @@ Blogpost.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "blogpost",
+    modelName: "blogPost",
   }
 );
 
-module.exports = Blogpost;
+module.exports = blogPost;

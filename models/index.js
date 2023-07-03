@@ -28,7 +28,7 @@ BlogPost.hasMany(Comment, {
 });
 
 Comment.belongsTo(BlogPost, {
-   foreignKey: 'post_Id',
+   foreignKey: 'blogPost_Id',
    onDelete: 'CASCADE',
 });
 
