@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../models");
+const { blogPost, User, Comment } = require("../models");
 const authorize = require("../utils/authorize");
 
 router.get("/", authorize, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id,{
       attributes: { exclude: ["password"] },
-        include: [{ model: Post }],
+        include: [{ model: blogPost }],
   
     });
     const user = userData.get({ plain: true });
@@ -28,11 +28,11 @@ router.get("/write-post", authorize, (req, res) => {
 
 router.get("/edit-post/:id", authorize, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id);
-    const post = postData.get({ plain: true });
+    const blogPostData = await blogPost.findByPk(req.params.id);
+    const blogPost = blogPostData.get({ plain: true });
      res.render("edit-post", {
       layout: "dashboard",
-        post,
+        blogPost,
       });
   } catch (err) {
     res.redirect("login");

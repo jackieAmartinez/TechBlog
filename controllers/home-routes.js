@@ -1,13 +1,13 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../models");
+const { blogPost, User, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
     try {
-        const postData = await Post.findAll({
+        const blogPostData = await blogPost.findAll({
             include: [User],
         });
 
-        const allPosts = postData.map((post) => post.get({ plain: true }));
+        const allPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
      res.render("reader-home", { allPosts });
     } catch (err) {
      console.log(err);
@@ -15,9 +15,9 @@ router.get("/", async (req, res) => {
     }
   });
 
-router.get("/post/:id", async (req, res) => {
+router.get("/blogPost/:id", async (req, res) => {
     try {
-      const postData = await Post.findByPk(req.params.id, {
+      const blogPostData = await blogPost.findByPk(req.params.id, {
         include: [
           {
             model: User,
@@ -29,10 +29,10 @@ router.get("/post/:id", async (req, res) => {
         ],
       });
   
-      const Post = postData.get({ plain: true });
-      res.render("post", {
+      const blogPost = blogpostData.get({ plain: true });
+      res.render("blogPost", {
         layout: "main",
-        Post,
+        blogPost,
       });
     } catch (err) {
       res.status(500).json(err);

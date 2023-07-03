@@ -1,16 +1,16 @@
 const router = require("express").Router();
-const { Post } = require("../../models/");
+const { blogPost } = require("../../models/");
 const authorize = require("../../utils/authorize");
 
 
-router.post("/", authorize, async (req, res) => {
+router.blogPost("/", authorize, async (req, res) => {
   const body = req.body; 
   try {
-     const post = await Post.create({
+     const blogPost = await blogPost.create({
        ...req.body,
        userID: req.session.user_id
      });
-     res.status(200).json(post);
+     res.status(200).json(blogPost);
    } catch (err) {
      res.status(400).json(err);
    }
@@ -19,19 +19,19 @@ router.post("/", authorize, async (req, res) => {
 router.get('/:id', async (req, res) => {
 
   try {
-     const postData = await post.findOne({
+     const blogPostData = await blogPost.findOne({
        where: {
          id: req.params.id,
        },
      });
-     res.json(postData);
+     res.json(blogPostData);
 } catch (err) {
   res.status(500).json(err);
 }
 });
 
 router.put("/:id", authorize, (req, res) => {
-  try { const updated = Post.update({
+  try { const updated = blogPost.update({
         ...req.body,
         userID: req.session.user_id
      }, 
@@ -53,7 +53,7 @@ router.put("/:id", authorize, (req, res) => {
 
 router.delete("/:id", authorize, async (req, res) => {
   try {
-    const yeetyeet = await Post.destroy({
+    const yeetyeet = await blogPost.destroy({
       where: {
         id: req.params.id,
       },
