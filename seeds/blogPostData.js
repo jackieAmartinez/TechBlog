@@ -1,6 +1,6 @@
-const { Post } = require('../models');
+// const { Post } = require('../models');
 
-const postData = 
+// const postData = 
 [
     {
       "title": "Music Near Me",
@@ -40,6 +40,6 @@ const postData =
     }
   ]
 
-const seedPosts = () => Post.bulkCreate(postData);
+// const seedPosts = () => Post.bulkCreate(postData);
 
-module.exports = seedPosts;  
+// module.exports = seedPosts;  

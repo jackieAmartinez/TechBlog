@@ -1,35 +1,35 @@
 // trust fund
 // Imports
-// const sequelize = require("../config/connection");
-// const { User, BlogPost, Comment } = require("../models");
+const sequelize = require("../config/connection");
+const { User, BlogPost, Comment } = require("../models");
 
-// const userData = require("./userData");
-// const blogPostData = require("./blogPostData");
-// const commentData = require("./commentData");
+const userData = require("./userData");
+const blogPostData = require("./blogPostData");
+const commentData = require("./commentData");
 
 // Seeds database with user data, blogPost data, and comment data
-// const seedDatabase = async () => {
-//   await sequelize.sync({ force: true });
+const seedDatabase = async () => {
+  await sequelize.sync({ force: true });
 
-//   const users = await User.bulkCreate(userData, {
-//     individualHooks: true,
-//     returning: true,
-//   });
+  const users = await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-//   for (const blogPost of blogPostData) {
-//     await BlogPost.create({
-//       ...blogPost,
-//       user_id: users[Math.floor(Math.random() * users.length)].id,
-//     });
-//   }
+  for (const blogPost of blogPostData) {
+    await BlogPost.create({
+      ...blogPost,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+  }
 
-//   const comments = await Comment.bulkCreate(commentData);
+  const comments = await Comment.bulkCreate(commentData);
 
-//   process.exit(0);
-// };
+  process.exit(0);
+};
 
 // Function call to seed database
-// seedDatabase();
+seedDatabase();
 
 
 

@@ -1,7 +1,7 @@
-//Does this need to be clog.js
 const authorize = (req, res, next) => {
+  console.log(req.session.logged_in);
   if (!req.session.logged_in) {
-    res.status(400);
+    res.redirect("/login");
   } else {
     next();
   }

@@ -3,9 +3,9 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 // game model to organize the shelf before table gets flipped
-class blogPost extends Model {}
+class BlogPost extends Model {}
 
-blogPost.init(
+BlogPost.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,11 +15,16 @@ blogPost.init(
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    content: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
     user_ID: {
       type: DataTypes.INTEGER,
