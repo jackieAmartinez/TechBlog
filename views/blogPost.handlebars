@@ -1,0 +1,37 @@
+  <article class="post">
+      <div class = "content">
+        <p>User Name: {{posts.[0].user.username}}</p>
+        <p>Posts: {{posts.length}}</p>
+        <a href="/dashboard/edituser">Edit My Info</a>
+      </div>
+    </article>
+
+    {{!-- {{!-- Blog Post Page --}}
+<div class="container">
+    <div class="row">
+        <div class="card text-dark shadow mb-3 blogPost-main">
+            <div class="text-center mx-auto p-3">
+                <h2>{{title}}</h2>
+                <p>Created by {{user.name}} on {{format_date date_created}}</p>
+                <p>{{description}}</p>
+                <button class="btn btn-dark" id="editBtn">Edit</button>
+                <button class="btn btn-dark" id="deleteBtn">Delete</button>
+            </div>
+
+            <div class="text-center">
+                <h3>Comments</h3>
+                {{#each comments as |comment| }}
+                    <div>
+                        <p>{{comment.comment_body}} by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> comment-form }}
+
+<script src="/js/newCommentHandler.js"></script>
+<script src="/js/deleteBlogPost.js"></script>
+<script src="/js/editBlogPost.js"></script> --}}

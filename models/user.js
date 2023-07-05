@@ -21,6 +21,9 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: true,
+      }
     },
     email: {
       type: DataTypes.STRING,
@@ -51,7 +54,7 @@ User.init(
           10
         );
         return updatedUserData;
-      },
+      }
     },
     sequelize,
     timestamps: false,

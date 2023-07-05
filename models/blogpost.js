@@ -2,7 +2,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-// game model to organize the shelf before table gets flipped
 class BlogPost extends Model {}
 
 BlogPost.init(

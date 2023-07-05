@@ -1,7 +1,6 @@
-// trust fund
-// const { Comment } = require('../models');
+const { Comment } = require('../models');
 
-// const commentData = 
+const commentData = 
 [
     {
       "comment_body": "What is this guy talking about!",
@@ -41,6 +40,6 @@
     }
   ]
 
-// const seedComments = () => Comment.bulkCreate(commentData);
+const seedComments = () => Comment.bulkCreate(commentData);
 
-// module.exports = seedComments;
+module.exports = seedComments;

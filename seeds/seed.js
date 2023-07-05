@@ -1,4 +1,3 @@
-// trust fund
 // Imports
 const sequelize = require("../config/connection");
 const { User, BlogPost, Comment } = require("../models");
@@ -34,17 +33,19 @@ seedDatabase();
 
 
 // the queen
-const sequelize = require('../config/connection');
+
 const seedUsers = require('./userData');
-const seedblogPosts = require('./blogPostData');
+const seedPosts = require('./blogPostData');
 const seedComments = require('./commentData');
+
+const sequelize = require('../config/connection');
 
 const seedAll = async () => {
     await sequelize.sync({ force: true });
 
     await seedUsers();
         console.log('\n**********USERS SEEDED**********\n');
-    await seedblogPosts();
+    await seedPosts();
         console.log('\n**********BLOGPOSTS SEEDED**********\n');
     await seedComments();
         console.log('\n********COMMENTS SEEDED*********\n');

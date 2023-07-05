@@ -27,9 +27,9 @@ Comment.init(
       references: {
         model: "blogPost",
         key: "id",
-      },
+      }
     },
-    date_Created: {
+    date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,

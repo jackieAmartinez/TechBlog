@@ -1,8 +1,6 @@
+const { User } = require('../models');
 
-// the queen
-  // const { User } = require('../models');
-
-  // const userData = 
+const userData = 
   [
     {
         "userName": "Sal",
@@ -36,8 +34,9 @@
       }
   ]
   
-  // const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
+  // seed bulk create does NOT hash the password, so they must be hashed via the update route before the login route will work!
+  const seedUsers = () => User.bulkCreate(userData);
   
-  // module.exports = seedUsers;
+  module.exports = seedUsers;
   
   
