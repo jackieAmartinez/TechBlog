@@ -8,11 +8,11 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["name"],
+          // attributes: ["name"],
         },
         {
           model: Comment,
-          attributes: ["id", "comment_body", "blogPost_id", "user_id", "created_at"],
+          // attributes: ["id", "comment_body", "blogPost_id", "user_id", "created_at"],
         },
       ],
     });
@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
     );
 
     // pass serialized data and session flag into template
+    console.log(blogPosts)
      res.render("homepage", { 
       blogPosts,
       logged_in: req.session.logged_in,
@@ -40,11 +41,11 @@ router.get("/", async (req, res) => {
         include: [
           {
             model: User,
-            attributes: ["name"],
+            // attributes: ["name"],
           },
           {
             model: Comment,
-            include: [User],
+            // include: [User],
           },
         ],
       });
