@@ -1,14 +1,28 @@
+// Dependencies
+// path module
 const path = require('path');
+// dotenv file for sensitive configuration information
+require('dotenv').config();
+// Express.js server
 const express = require('express');
-const session = require('express-session');
-const handlebars = require('express-handlebars');
-const routes = require("./controllers");
-const helpers = require('./utils/helpers');
+// All routes as defined in the controllers folder
+const routes = require('./controllers/');
+// Sequelize connection to the database
 const sequelize = require('./config/connection');
-const SessionStorage = require('connect-session-sequelize')(session.Store);
+// Handlebars template engine for front-end
+const exphbs = require('express-handlebars')
+// Express session to handle session cookies
+const session = require('express-session')
+// Sequelize store to save the session so the user can remain logged in
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// Handlebars helpers
+const helpers = require('./utils/helpers');
+
+// Initialize handlebars for the html templates
+const hbs = exphbs.create({ helpers });
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const userSession = {
   secret: 'imjustababy',
@@ -20,25 +34,26 @@ const userSession = {
   },
   resave: false,
   saveUninitialized: true,
-  store: new SessionStorage({
+  store: new SequelizeStore({
     db: sequelize
   })
 };
-// could be const hbs
-const view = handlebars.create({ helpers });
 
+// Tell the app to use Express Session for the session handling
 app.use(session(userSession));
 
-app.engine('handlebars', view.engine);
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./controllers/'));
+app.use(routes);
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-  sequelize.sync({ force: false });
+// Turn on connection to db and then to the server
+// force: true to reset the database and clear all values, updating any new relationships
+// force: false to maintain data - aka normal operation
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });

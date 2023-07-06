@@ -1,6 +1,6 @@
 const router = require("express").Router();
+const sequelize = require("../config/connection");
 const { BlogPost, User, Comment } = require("../models");
-const authorize = require("../utils/authorize");
 
 router.get("/", async (req, res) => {
   try {
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["comment_body"],
+          attributes: ["id", "comment_body", "blogPost_id", "user_id", "created_at"],
         },
       ],
     });
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
   });
 
 // route set up to find single blog post and render blogPost page
-  router.get("/blogPost/:id", authorize, async (req, res) => {
+  router.get("/blogPost/:id", async (req, res) => {
     try {
       const blogPostData = await BlogPost.findByPk(req.params.id, {
         // join user data and comment data with blog post data
@@ -63,9 +63,7 @@ router.get("/", async (req, res) => {
     }
   });
 
-  // THIS IS A SAVE POINT - START HERE WHEN YOU RETURN
-
-router.get("/dashboard", authorize, async (req, res) => {
+router.get("/dashboard", async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
@@ -74,7 +72,8 @@ router.get("/dashboard", authorize, async (req, res) => {
           model: BlogPost,
           include: [User],
         },
-        {
+        {//sarah gibson friday july 28 at 10:45 - 
+          // 
           model: Comment,
         },
       ],
@@ -126,7 +125,7 @@ router.get("/create/:id", async (req, res) => {
       ],
     });
 
-    const blogPost = blogPostDdata.get({ plain: true });
+    const blogPost = blogPostData.get({ plain: true });
     console.log(blogPost);
 
     if (req.session.logged_in) {
