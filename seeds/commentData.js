@@ -3,9 +3,15 @@ const { Comment } = require('../models');
 const commentData = 
 [
     {
-      "comment_body": "What is this guy talking about!",
+      "comment_body": "Zelia Nuttal (1857–1993), México",
       "date_created": "January 15, 2022",
-      "user_id": 2,
+      "user_id": 1,
+      "blogPost_id": 2
+    },
+    {
+      "comment_body": "Zelia Nuttal (1857–1993), México",
+      "date_created": "January 15, 2022",
+      "user_id": 1,
       "blogPost_id": 1
     },
     {

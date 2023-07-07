@@ -25,12 +25,10 @@ router.get("/", async (req, res) => {
     const commentData = await Comment.findAll({
       include: [
         {
-          model: User,
-          attributes: ["username"],
+          model: User
         },
         {
-          model: BlogPost,
-          attributes: ["id"],
+          model: BlogPost
         },
       ],
     });
