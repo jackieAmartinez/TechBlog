@@ -6,7 +6,7 @@ router.get("/", authorize, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id,{
       attributes: { exclude: ["password"] },
-        include: [{ model: blogPost }],
+        include: [{ model: BlogPost }],
   
     });
     const user = userData.get({ plain: true });

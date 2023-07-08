@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: User
-        },
+        }, 
         {
           model: Comment
         },
@@ -16,11 +16,11 @@ router.get("/", async (req, res) => {
     });
 
     // serialize data so the template can read it
-    const BlogPosts = blogPostData.map((BlogPost) => BlogPost.get({ plain: true })
+    const blogPosts = blogPostData.map((BlogPost) => BlogPost.get({ plain: true })
     );
 
     // pass serialized data and session flag into template
-    console.log(BlogPosts)
+    console.log(blogPosts)
      res.render("homepage", { 
       blogPosts,
       logged_in: req.session.logged_in,
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
   });
 
 // route set up to find single blog post and render blogPost page
-  router.get("/BlogPost/:id", async (req, res) => {
+  router.get("/blogPost/:id", async (req, res) => {
     try {
       const blogPostData = await BlogPost.findByPk(req.params.id, {
         // join user data and comment data with blog post data
@@ -46,11 +46,11 @@ router.get("/", async (req, res) => {
         ],
       });
   
-      const BlogPost = blogPostData.get({ plain: true });
-      console.log(BlogPost);
+      const blogPost = blogPostData.get({ plain: true });
+      console.log(blogPost);
   
-      res.render("BlogPost", {
-        ...BlogPost,
+      res.render("blogPost", {
+        ...blogPost,
         logged_in: req.session.logged_in,
       });
 
