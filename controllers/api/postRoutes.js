@@ -57,18 +57,18 @@ router.put("/:id", authorize, (req, res) => {
 // Route to delete an existing blog post
 router.delete("/:id", authorize, async (req, res) => {
   try {
-    const yeetyeet = await blogPost.destroy({
+    const sashayAway = await BlogPost.destroy({
       where: {
         id: req.params.id,
       },
     });
-    if (!yeetyeet) {
+    if (!sashayAway) {
       res.status(404).json({
         message: `How dare you delete these things!`,
       });
       return;
     }
-    res.status(200).json(yeetyeet);
+    res.status(200).json(sashayAway);
   } catch (err) {
     res.status(500).json(err);
   }

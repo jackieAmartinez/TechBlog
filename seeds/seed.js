@@ -6,7 +6,6 @@ const sequelize = require('../config/connection');
 
 const seedAll = async () => {
     await sequelize.sync({ force: true });
-    //5th floor yellow elevators obgyn triage 317 880-7666
 
     await seedUsers();
         console.log('\n**********USERS SEEDED**********\n');

@@ -106,9 +106,9 @@
 <section>
   <h2>Your Posts</h2>
   <ol>
-    {{#each blogPosts}}
+    {{#each BlogPosts}}
     <li>
-      {{> blogPost-info blogPost}}
+      {{> blogPost-info BlogPost}}
       <a href="/dashboard/edit/{{blogPost.id}}" class="edit-link">Edit post</a>
     </li>
     {{/each}}

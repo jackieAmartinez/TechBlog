@@ -13,9 +13,12 @@ if (process.env.JAWSDB_URL) {
     {
       host: "127.0.01",
       dialect: "mysql",
-      port: 3306,
+      // port: 3306,
+      dialectOptions: {
+        decimalNumbers: true,
+      }
     }
   );
-}
+};
 
 module.exports = sequelize;
