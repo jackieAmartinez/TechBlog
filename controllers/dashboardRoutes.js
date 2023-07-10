@@ -4,7 +4,7 @@ const authorize = require("../utils/authorize");
 
 router.get("/", authorize, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id,{
+    const userData = await User.findByPk(req.session.user_ID,{
       attributes: { exclude: ["password"] },
         include: [{ model: BlogPost }],
   

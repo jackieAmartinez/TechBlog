@@ -1,4 +1,4 @@
-const postId = document.querySelector('input[name="post-id"]').value;
+const postid = document.querySelector('input[name="post-id"]').value;
 
 const moreDifferentPost = async function(event) {
   event.preventDefault();
@@ -6,7 +6,7 @@ const moreDifferentPost = async function(event) {
   const moreDifferentTitle = document.querySelector(`#post-title`).value;
   const moreDifferentBody = document.querySelector(`#post-body`).value;
 
-  await fetch(`/api/post/${postId}`, {
+  await fetch(`/api/post/${postid}`, {
     method: 'PUT',
     body: JSON.stringify({
       moreDifferentTitle,
@@ -21,7 +21,7 @@ const moreDifferentPost = async function(event) {
 };
 
 const throwItIntoTheSun = async function() {
-  await fetch(`/api/post/${postId}`, {
+  await fetch(`/api/post/${postid}`, {
     method: 'DELETE'
   });
 

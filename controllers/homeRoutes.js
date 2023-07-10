@@ -93,7 +93,7 @@ router.get("/create", async (req, res) => {
     if (req.session.logged_in) {
       res.render("create", {
         logged_in: req.session.logged_in,
-        userId: req.session.user_id,
+        userid: req.session.user_id,
       });
       return;
     } else {
@@ -126,7 +126,7 @@ router.get("/create/:id", async (req, res) => {
       res.render("edit", {
         ...BlogPost,
         logged_in: req.session.logged_in,
-        userId: req.session.user_id,
+        userid: req.session.user_id,
       });
       return;
     } else {

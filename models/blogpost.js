@@ -25,7 +25,7 @@ BlogPost.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    user_ID: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",

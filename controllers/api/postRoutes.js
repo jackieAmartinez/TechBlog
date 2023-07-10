@@ -9,7 +9,7 @@ router.post("/", authorize, async (req, res) => {
   try {
      const newBlogPost = await BlogPost.create({
        ...req.body,
-       userID: req.session.user_id
+       userid: req.session.user_id
      });
      res.status(200).json(newBlogPost);
    } catch (err) {
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 router.put("/:id", authorize, (req, res) => {
   try { const blogPostData = BlogPost.update({
         ...req.body,
-        userID: req.session.user_id
+        userid: req.session.user_id
      }, 
      {
         where: {
