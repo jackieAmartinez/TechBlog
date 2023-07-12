@@ -2,13 +2,13 @@
 const loginUser = async (event) => {
     event.preventDefault();
     // local variables
-    const username = document.querySelector("#username-login-input").value.trim();
-    const password = document.querySelector("#password-login-input").value.trim();
+    const email = document.querySelector("#email-login").value.trim();
+    const password = document.querySelector("#password-login").value.trim();
     // verify
-    if (username && password) {
-      const response = await fetch("/api/users/login", {
+    if (email && password) {
+      const response = await fetch("/api/user/login", {
         method: "POST",
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
       });
       // display or error
@@ -18,6 +18,7 @@ const loginUser = async (event) => {
         alert(response.statusText);
       }
     }
+    console.log(email, password);
   };
   
   

@@ -148,7 +148,7 @@ router.all("/login", (req, res) => {
   res.render("login");
 });
 
-router.all("/signup", (req, res) => {
+router.get("/signup", (req, res) => {
 
   if (req.session.logged_in) {
     res.redirect("/dashboard");
